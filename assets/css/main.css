@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --lore-cream: #f6f2ec;
+  --lore-black: #17140f;
+  --lore-line: #e4ddd0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-ink antialiased;
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: 'Playfair Display', serif;
+  font-optical-sizing: auto;
+  font-style: italic;
+}
+
+.container-lore {
+  @apply mx-auto max-w-[1400px] px-6 md:px-10;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center bg-ink text-cream px-8 py-3.5 text-[13px] tracking-[0.12em] uppercase rounded-full transition-colors duration-200 hover:bg-black;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center border border-ink text-ink px-8 py-3.5 text-[13px] tracking-[0.12em] uppercase rounded-full transition-colors duration-200 hover:bg-ink hover:text-cream;
+}
+
+.eyebrow {
+  @apply text-[12px] tracking-[0.2em] uppercase text-ink/60;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

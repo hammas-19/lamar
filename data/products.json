@@ -1,0 +1,248 @@
+[
+  {
+    "handle": "sublimity",
+    "category": "fragrance",
+    "title": "Sublimity",
+    "description": "Sublimity Eau de parfum opens with the lush warmth of coconut nectar and ylang ylang blossom. Like a beach only 4WD can get to, it breaks into a elevated heart of sea salt and sandalwood, before holding you in the close kiss of full sun.",
+    "image": "/images/Sublimity-50ML18c3.png",
+    "variants": [
+      {
+        "id": "46173282238627",
+        "title": "10ml",
+        "option": "10ml",
+        "sku": "LORESUBLI10ML01",
+        "price": 28.0
+      },
+      {
+        "id": "46173283352739",
+        "title": "50ml",
+        "option": "50ml",
+        "sku": "LORESUBLI50ML01",
+        "price": 92.0
+      }
+    ],
+    "gradient": "linear-gradient(135deg, #8ba89c 0%, #6b8c7e 100%)",
+    "badge": "Top Seller",
+    "notes": ["Coconut Nectar", "Ylang Ylang", "Sea Salt", "Sandalwood"]
+  },
+  {
+    "handle": "sublimity-zine",
+    "category": "object",
+    "title": "The Magazine",
+    "description": "EVERYTHING POSSIBLE VOL. 2 Our second magazine is a dedication to Sublimity\u2013the scent of full sun on warm wet skin\u2013and to its origin home of Hawai'i. Made through exchange with Hawai'i's creatives of today, its new collaborative works reveal threads of connection to a sublime land and even more sublime way of seeing it",
+    "image": "/images/SublimityZineVol.2_199bf.png",
+    "variants": [
+      {
+        "id": "47634081579171",
+        "title": "Default Title",
+        "option": "Default Title",
+        "sku": "SubliZine01",
+        "price": 38.0
+      }
+    ],
+    "gradient": "linear-gradient(135deg, #f5f0e8 0%, #ebe4d8 100%)"
+  },
+  {
+    "handle": "disfruta",
+    "category": "fragrance",
+    "title": "Disfruta",
+    "description": "Disfruta Eau de parfum swirls ecstatic top notes of passionfruit pulp and neroli with the warm heart of mezcal and white cedwarwood. Finishing like a craft cocktail, it wraps you in a rush of sparkling cold\u2014as if ice melting down glass.",
+    "image": "/images/Disfruta-10ML80b6.png",
+    "variants": [
+      {
+        "id": "46172669542563",
+        "title": "10ml",
+        "option": "10ml",
+        "sku": "LOREDISFR10ML01",
+        "price": 28.0
+      },
+      {
+        "id": "45740904710307",
+        "title": "50ml",
+        "option": "50ml",
+        "sku": "LOREDISFR50ML01",
+        "price": 92.0
+      }
+    ],
+    "gradient": "linear-gradient(135deg, #e0ecf4 0%, #c8dde8 100%)",
+    "notes": ["Passionfruit", "Neroli", "Mezcal", "Cedarwood"]
+  },
+  {
+    "handle": "lil-softie",
+    "category": "fragrance",
+    "title": "Lil Softie",
+    "description": "Sweet, lactonic and bright with top notes of pink pepper and cereal milk, before wrapping you in a skin-close, ambery musk of ambroxan, clean cottons and us.",
+    "image": "/images/Lil-Softie-50ML_8fec13ef-c3ab-4416-b78c-2d5618a343ede507.png",
+    "variants": [
+      {
+        "id": "47777722302627",
+        "title": "10ml",
+        "option": "10ml",
+        "sku": "LORESOFTIE10ML01",
+        "price": 28.0
+      },
+      {
+        "id": "47777721548963",
+        "title": "50ml",
+        "option": "50ml",
+        "sku": "LORESOFTIE50ML01",
+        "price": 92.0
+      }
+    ],
+    "gradient": "linear-gradient(135deg, #f8f0f0 0%, #f0e4e4 100%)",
+    "badge": "New",
+    "notes": ["Pink Pepper", "Cereal Milk", "Ambroxan", "Clean Cotton"]
+  },
+  {
+    "handle": "lovely-and-a-little-twisted",
+    "category": "fragrance",
+    "title": "Lovely and a Little Twisted",
+    "description": "Lovely and a little twisted is like decadence wrapped in a dream. It begins with the inviting warmth of rose milk and candied pistachio, then twists into a hypnotic body of velvety patchouli, aromatic oud and amber resin.",
+    "image": "/images/Lovely-10MLe92a.png",
+    "variants": [
+      {
+        "id": "46174221861027",
+        "title": "10ml",
+        "option": "10ml",
+        "sku": "LORELAALT10ML01",
+        "price": 28.0
+      },
+      {
+        "id": "46174223859875",
+        "title": "50ml",
+        "option": "50ml",
+        "sku": "LORELAALT50ML01",
+        "price": 92.0
+      }
+    ],
+    "gradient": "linear-gradient(135deg, #f5e6e0 0%, #e8d0c8 100%)",
+    "notes": ["Rose Milk", "Pistachio", "Patchouli", "Amber"]
+  },
+  {
+    "handle": "somewhere-but-no-where",
+    "category": "fragrance",
+    "title": "Somewhere but Nowhere",
+    "description": "Somewhere but nowhere is our ode to Americana. A story of grit, lonesomeness and grace, its heart of bold cedarwood steeps with crisp notes of cardamom and black tea, made soft around the edges by a little vanilla cream.",
+    "image": "/images/Somewhere-10ML7096.png",
+    "variants": [
+      {
+        "id": "46174226219171",
+        "title": "10ml",
+        "option": "10ml",
+        "sku": "LORESBN10ML01",
+        "price": 28.0
+      },
+      {
+        "id": "46174227267747",
+        "title": "50ml",
+        "option": "50ml",
+        "sku": "LORESBN50ML01",
+        "price": 92.0
+      }
+    ],
+    "gradient": "linear-gradient(135deg, #f2ece4 0%, #e8e0d4 100%)",
+    "notes": ["Cedarwood", "Cardamom", "Black Tea", "Vanilla"]
+  },
+  {
+    "handle": "the-candelabra",
+    "category": "object",
+    "title": "Candelabra Set",
+    "description": "With which to experience your candles. Crafted in collaboration with ceramic artist, Christian Moses, the Candelabra is sculpted from a delicate patchwork of 40 clay pieces, shaped and painted by hand. Each one-of-a-kind, a study of all the ways we come together to hold light.",
+    "image": "/images/LORE-Candelabra4508.png",
+    "variants": [
+      {
+        "id": "47310822572195",
+        "title": "Default Title",
+        "option": "Default Title",
+        "sku": "LAUNCHOBJ02",
+        "price": 198.0
+      }
+    ],
+    "gradient": "linear-gradient(135deg, #f0ece6 0%, #e4ddd4 100%)"
+  },
+  {
+    "handle": "the-discovery-set-five-fragrances",
+    "category": "set",
+    "title": "The Discovery Set",
+    "description": "A wardrobe of new realities, the Discovery Set includes our five Eau de parfums.",
+    "image": "/images/LOREDiscoverySet_e5534925-d321-4fde-b026-2e442fb7c01094fd.png",
+    "variants": [
+      {
+        "id": "47857055563939",
+        "title": "Default Title",
+        "option": "Default Title",
+        "sku": "LOREDISCOSET03",
+        "price": 28.0
+      }
+    ],
+    "gradient": "linear-gradient(135deg, #f5f0ea 0%, #ebe4dc 100%)"
+  },
+  {
+    "handle": "lore-discovery-set",
+    "category": "set",
+    "title": "LORE Fragrance Discovery Set",
+    "description": "A wardrobe of new realities, the Discovery Set includes LORE's four Eau de parfums.",
+    "image": "/images/LORE-Discover-Setda4d.png",
+    "variants": [
+      {
+        "id": "46041957957795",
+        "title": "Default Title",
+        "option": "Default Title",
+        "sku": "LOREDISCOSET02",
+        "price": 25.0
+      }
+    ],
+    "gradient": "linear-gradient(135deg, #f2eee6 0%, #e6e0d6 100%)"
+  },
+  {
+    "handle": "everything-set-in-bag",
+    "category": "set",
+    "title": "Everything Set in Bag",
+    "description": "A wardrobe of new realities, the Everything Set with Bag includes four Eau de parfums\u2014Sublimity, Disfruta, Lovely and a little twisted, and Somewhere but nowhere.",
+    "image": "/images/LORE_Web_Holiday_EverythingSet_PDP_01419f.png",
+    "variants": [
+      {
+        "id": "46495501582499",
+        "title": "Default Title",
+        "option": "Default Title",
+        "sku": "HOLIDAYKIT01",
+        "price": 100.0
+      }
+    ],
+    "gradient": "linear-gradient(135deg, #f5efe8 0%, #ebe2d8 100%)"
+  },
+  {
+    "handle": "holder-object",
+    "category": "object",
+    "title": "Holder Object",
+    "description": "The Holder Object is an exploration of the unexpected forms softness takes, of the unconventional ways the world sometimes holds. It's also a devotion to craft\u2014made in Los Angeles of solid Walnut, each whorled by the rings of new growth, finished by hand and engraved with the LORE squiq.",
+    "image": "/images/LORE_Web_Holiday_Keepsake_PLP9831.png",
+    "variants": [
+      {
+        "id": "46545707794595",
+        "title": "Default Title",
+        "option": "Default Title",
+        "sku": "LAUNCHOBJ01",
+        "price": 228.0
+      }
+    ],
+    "gradient": "linear-gradient(135deg, #ede6dc 0%, #e0d4c8 100%)"
+  },
+  {
+    "handle": "build-your-bundle",
+    "category": "set",
+    "title": "Build Your Travel Bundle",
+    "description": "You're more than one mood. Build a kit of two \u2014 the ones that feel like you, ready whenever you reach for them.",
+    "image": "/images/LORETravelBundlef3cc.png",
+    "variants": [
+      {
+        "id": "47616325615779",
+        "title": "Bundle of 2",
+        "option": "Bundle of 2",
+        "sku": "LOREBYOB01",
+        "price": 52.0
+      }
+    ],
+    "gradient": "linear-gradient(135deg, #f0ece6 0%, #e4ded4 100%)"
+  }
+]
