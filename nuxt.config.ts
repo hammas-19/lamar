@@ -4,8 +4,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/google-fonts',
-    '@nuxtjs/supabase'
+    '@nuxtjs/google-fonts'
   ],
 
   css: ['~/assets/css/main.css'],
@@ -18,11 +17,6 @@ export default defineNuxtConfig({
     display: 'swap'
   },
 
-  supabase: {
-    // UI-only build for now: Supabase is wired up but not queried anywhere yet.
-    // Set NUXT_PUBLIC_SUPABASE_URL / NUXT_PUBLIC_SUPABASE_ANON_KEY in .env when ready.
-    redirect: false
-  },
 
   app: {
     head: {
