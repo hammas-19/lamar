@@ -26,7 +26,7 @@ const { lines, subtotal, updateQuantity, removeItem } = useCart()
                 </NuxtLink>
                 <p class="text-sm text-ink/50 mt-1">{{ line.variant.title }}</p>
               </div>
-              <p class="text-sm">${{ (line.variant.price * line.quantity).toFixed(2) }}</p>
+              <p class="text-sm">{{ formatPrice(line.variant.price * line.quantity) }}</p>
             </div>
 
             <div class="flex items-center justify-between">
@@ -57,7 +57,7 @@ const { lines, subtotal, updateQuantity, removeItem } = useCart()
         <h2 class="font-serif text-xl mb-6">Order Summary</h2>
         <div class="flex justify-between text-sm mb-3">
           <span class="text-ink/60">Subtotal</span>
-          <span>${{ subtotal.toFixed(2) }}</span>
+          <span>{{ formatPrice(subtotal) }}</span>
         </div>
         <div class="flex justify-between text-sm mb-6">
           <span class="text-ink/60">Shipping</span>
@@ -65,7 +65,7 @@ const { lines, subtotal, updateQuantity, removeItem } = useCart()
         </div>
         <div class="flex justify-between text-base font-medium border-t border-line pt-4 mb-6">
           <span>Total</span>
-          <span>${{ subtotal.toFixed(2) }}</span>
+          <span>{{ formatPrice(subtotal) }}</span>
         </div>
         <NuxtLink to="/checkout" class="btn-primary w-full">Checkout</NuxtLink>
       </div>

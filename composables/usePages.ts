@@ -15,32 +15,13 @@ export function usePage(slug: string): PageData {
   if (process.client) {
     onMounted(async () => {
       try {
-        const supabase = useSupabaseClient()
-        const { data: page, error } = await supabase
-          .from('pages')
-          .select('*')
-          .eq('slug', slug)
-          .single()
-
-        if (!error && page) {
-          let items: Array<{ q: string; a: string }> | undefined = undefined
-          if (slug === 'faq') {
-            const { data: faqItems } = await supabase
-              .from('faq_items')
-              .select('question, answer')
-              .eq('page_id', page.id)
-              .order('sort_order', { ascending: true })
-
-            if (faqItems) {
-              items = faqItems.map((fi: any) => ({ q: fi.question, a: fi.answer }))
-            }
-          }
-
+        const data = await $fetch<PageData>(`/api/pages/${slug}`)
+        if (data) {
           pageState.value = {
-            title: page.title,
-            description: page.description,
-            image: page.image || undefined,
-            items: items || fallbackPages[slug]?.items
+            title: data.title,
+            description: data.description,
+            image: data.image || undefined,
+            items: data.items || fallbackPages[slug]?.items,
           }
         }
       } catch {

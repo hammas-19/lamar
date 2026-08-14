@@ -8,17 +8,17 @@
     "variants": [
       {
         "id": "46173282238627",
-        "title": "10ml",
-        "option": "10ml",
-        "sku": "LAMARSUBLI10ML01",
-        "price": 28.0
-      },
-      {
-        "id": "46173283352739",
         "title": "50ml",
         "option": "50ml",
         "sku": "LAMARSUBLI50ML01",
         "price": 92.0
+      },
+      {
+        "id": "46173283352739",
+        "title": "100ml",
+        "option": "100ml",
+        "sku": "LAMARSUBLI100ML01",
+        "price": 150.0
       }
     ],
     "gradient": "linear-gradient(135deg, #8ba89c 0%, #6b8c7e 100%)",
@@ -58,17 +58,17 @@
     "variants": [
       {
         "id": "46172669542563",
-        "title": "10ml",
-        "option": "10ml",
-        "sku": "LAMARDISFR10ML01",
-        "price": 28.0
-      },
-      {
-        "id": "45740904710307",
         "title": "50ml",
         "option": "50ml",
         "sku": "LAMARDISFR50ML01",
         "price": 92.0
+      },
+      {
+        "id": "45740904710307",
+        "title": "100ml",
+        "option": "100ml",
+        "sku": "LAMARDISFR100ML01",
+        "price": 150.0
       }
     ],
     "gradient": "linear-gradient(135deg, #e0ecf4 0%, #c8dde8 100%)",
@@ -89,17 +89,17 @@
     "variants": [
       {
         "id": "47777722302627",
-        "title": "10ml",
-        "option": "10ml",
-        "sku": "LAMARSOFTIE10ML01",
-        "price": 28.0
-      },
-      {
-        "id": "47777721548963",
         "title": "50ml",
         "option": "50ml",
         "sku": "LAMARSOFTIE50ML01",
         "price": 92.0
+      },
+      {
+        "id": "47777721548963",
+        "title": "100ml",
+        "option": "100ml",
+        "sku": "LAMARSOFTIE100ML01",
+        "price": 150.0
       }
     ],
     "gradient": "linear-gradient(135deg, #f8f0f0 0%, #f0e4e4 100%)",
@@ -121,17 +121,17 @@
     "variants": [
       {
         "id": "46174221861027",
-        "title": "10ml",
-        "option": "10ml",
-        "sku": "LAMARLAALT10ML01",
-        "price": 28.0
-      },
-      {
-        "id": "46174223859875",
         "title": "50ml",
         "option": "50ml",
         "sku": "LAMARLAALT50ML01",
         "price": 92.0
+      },
+      {
+        "id": "46174223859875",
+        "title": "100ml",
+        "option": "100ml",
+        "sku": "LAMARLAALT100ML01",
+        "price": 150.0
       }
     ],
     "gradient": "linear-gradient(135deg, #f5e6e0 0%, #e8d0c8 100%)",
@@ -152,17 +152,17 @@
     "variants": [
       {
         "id": "46174226219171",
-        "title": "10ml",
-        "option": "10ml",
-        "sku": "LAMARSBN10ML01",
-        "price": 28.0
-      },
-      {
-        "id": "46174227267747",
         "title": "50ml",
         "option": "50ml",
         "sku": "LAMARSBN50ML01",
         "price": 92.0
+      },
+      {
+        "id": "46174227267747",
+        "title": "100ml",
+        "option": "100ml",
+        "sku": "LAMARSBN100ML01",
+        "price": 150.0
       }
     ],
     "gradient": "linear-gradient(135deg, #f2ece4 0%, #e8e0d4 100%)",

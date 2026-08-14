@@ -31,36 +31,14 @@ const fallbackProducts: Product[] = (productsData as any[]).map((p) => ({
   images: [p.image, p.image2, p.image3].filter(Boolean) as string[]
 }))
 
-export async function fetchProductsFromSupabase(): Promise<Product[] | null> {
+/**
+ * Fetch products from server API (which uses Redis cache → Supabase).
+ * Falls back to local JSON data if the API is unreachable.
+ */
+export async function fetchProductsFromAPI(): Promise<Product[] | null> {
   try {
-    const supabase = useSupabaseClient()
-    const { data, error } = await supabase
-      .from('products_full')
-      .select('*')
-      .order('sort_order', { ascending: true })
-
-    if (error || !data || data.length === 0) {
-      return null
-    }
-
-    return data.map((item: any) => {
-      const imgs = [item.image_url, item.image_2_url, item.image_3_url].filter(Boolean) as string[]
-      return {
-        handle: item.handle,
-        category: item.category,
-        title: item.title,
-        description: item.description,
-        image: item.image_url,
-        image2: item.image_2_url || undefined,
-        image3: item.image_3_url || undefined,
-        images: imgs,
-        variants: item.variants || [],
-        gradient: item.gradient || undefined,
-        badge: item.badge || undefined,
-        notes: item.notes || [],
-        gender: item.gender || []
-      }
-    })
+    const data = await $fetch<Product[]>('/api/products')
+    return data && data.length > 0 ? data : null
   } catch {
     return null
   }
@@ -69,10 +47,10 @@ export async function fetchProductsFromSupabase(): Promise<Product[] | null> {
 export function useProducts(): Product[] {
   const productsState = useState<Product[]>('all-products', () => fallbackProducts)
 
-  // Asynchronously hydrate from Supabase if connected
+  // Asynchronously hydrate from cached API
   if (process.client) {
     onMounted(async () => {
-      const fetched = await fetchProductsFromSupabase()
+      const fetched = await fetchProductsFromAPI()
       if (fetched) {
         productsState.value = fetched
       }

@@ -65,7 +65,7 @@ const related = computed(() =>
           <div class="md:hidden mb-10 text-ink text-center">
             <p class="text-[10px] uppercase tracking-[0.2em] mb-2 opacity-70">LAMAR</p>
             <h1 class="font-serif text-3xl italic mb-2">{{ product.title }}</h1>
-            <p class="text-xl mb-6">${{ selectedVariant.price.toFixed(2) }}</p>
+            <p class="text-xl mb-6">{{ formatPrice(selectedVariant.price) }}</p>
 
             <div v-if="product.variants.length > 1" class="flex justify-center gap-2 mb-6">
               <button
@@ -141,7 +141,7 @@ const related = computed(() =>
           <p class="text-[10px] uppercase tracking-[0.2em] mb-2 opacity-70">LAMAR</p>
           <h1 class="font-serif text-4xl italic mb-1 text-center">{{ product.title }}</h1>
           <p class="text-[10px] uppercase tracking-[0.2em] mb-8 opacity-70">{{ product.category }}</p>
-          <p class="text-xl mb-8">${{ selectedVariant.price.toFixed(2) }}</p>
+          <p class="text-xl mb-8">{{ formatPrice(selectedVariant.price) }}</p>
 
           <div v-if="product.variants.length > 1" class="mb-8 w-full max-w-[240px]">
             <p class="text-[10px] uppercase tracking-[0.2em] mb-3 text-center opacity-70">Size</p>

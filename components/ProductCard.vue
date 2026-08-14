@@ -26,15 +26,15 @@ const minPrice = computed(() =>
     <div class="absolute bottom-0 left-0 right-0 p-4 md:p-6 flex items-end justify-between">
       <div>
         <h3 class="font-serif text-lg italic leading-tight">{{ product.title }}</h3>
-        <p class="text-[11px] uppercase tracking-[0.15em] text-ink/60 mt-1">
+        <!-- <p class="text-[11px] uppercase tracking-[0.15em] text-ink/60 mt-1">
           {{ product.category }}
-        </p>
+        </p> -->
       </div>
       <div class="text-right">
         <p class="text-[11px] uppercase tracking-[0.15em] text-ink/60">
           {{ product.variants[0].title }}
         </p>
-        <p class="text-sm">${{ minPrice.toFixed(0) }}</p>
+        <p class="text-sm">{{ formatPrice(minPrice) }}</p>
       </div>
     </div>
 

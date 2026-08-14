@@ -9,9 +9,6 @@ export interface CartLine {
   quantity: number
 }
 
-// Client-only, in-memory cart used to demo the UI (add/update/remove).
-// Not persisted and not connected to any backend — placeholder for real
-// cart logic to be wired up later.
 export function useCart() {
   const lines = useState<CartLine[]>('cart-lines', () => [])
 
@@ -54,5 +51,9 @@ export function useCart() {
     lines.value = lines.value.filter((l) => l.key !== key)
   }
 
-  return { lines, count, subtotal, addItem, updateQuantity, removeItem }
+  function clearCart() {
+    lines.value = []
+  }
+
+  return { lines, count, subtotal, addItem, updateQuantity, removeItem, clearCart }
 }
