@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import pages from '~/data/pages.json'
-const page = pages['terms-of-service']
+const page = computed(() => usePage('terms-of-service'))
 </script>
 
 <template>

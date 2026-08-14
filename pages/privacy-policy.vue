@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import pages from '~/data/pages.json'
-const page = pages['privacy-policy']
+const page = computed(() => usePage('privacy-policy'))
 </script>
 
 <template>

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 const email = ref('')
 const submitted = ref(false)
+const { subscribe } = useNewsletter()
 
-function submit() {
-  // UI-only placeholder — no signup logic wired up yet.
+async function submit() {
+  if (!email.value) return
+  await subscribe(email.value)
   submitted.value = true
 }
 </script>

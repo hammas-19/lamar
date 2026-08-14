@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import pages from '~/data/pages.json'
-const page = pages['shipping-returns']
+const page = computed(() => usePage('shipping-returns'))
 </script>
 
 <template>

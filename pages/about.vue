@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import pages from '~/data/pages.json'
-const page = pages.about
+const page = computed(() => usePage('about'))
 </script>
 
 <template>

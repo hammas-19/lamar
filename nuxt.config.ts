@@ -4,8 +4,13 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/supabase'
   ],
+
+  supabase: {
+    redirect: false
+  },
 
   css: ['~/assets/css/main.css'],
 
