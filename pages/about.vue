@@ -9,7 +9,7 @@ const page = pages.about
       <img :src="page.image" :alt="page.title" class="absolute inset-0 h-full w-full object-cover opacity-80" />
       <div class="absolute inset-0 bg-ink/40" />
       <div class="relative z-10 flex h-full flex-col items-center justify-center text-center px-6">
-        <p class="eyebrow text-cream/80 mb-4">About LORE</p>
+        <p class="eyebrow text-cream/80 mb-4">About LAMAR</p>
         <h1 class="font-serif text-cream text-4xl md:text-6xl">{{ page.title }}</h1>
       </div>
     </section>
@@ -20,13 +20,13 @@ const page = pages.about
 
     <section class="container-lore pb-24 grid md:grid-cols-3 gap-6">
       <div class="aspect-[3/4] overflow-hidden bg-line/30">
-        <img src="/images/Editorial_048872.png" alt="LORE" class="h-full w-full object-cover" />
+        <img src="/images/Editorial_048872.png" alt="LAMAR" class="h-full w-full object-cover" />
       </div>
       <div class="aspect-[3/4] overflow-hidden bg-line/30">
-        <img src="/images/Editorial_Bio_0313d4.png" alt="LORE" class="h-full w-full object-cover" />
+        <img src="/images/Editorial_Bio_0313d4.png" alt="LAMAR" class="h-full w-full object-cover" />
       </div>
       <div class="aspect-[3/4] overflow-hidden bg-line/30">
-        <img src="/images/secImage.jpeg" alt="LORE" class="h-full w-full object-cover" />
+        <img src="/images/secImage.jpeg" alt="LAMAR" class="h-full w-full object-cover" />
       </div>
     </section>
 

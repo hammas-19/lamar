@@ -47,7 +47,7 @@ const related = computed(() =>
         <main class="py-12 md:py-24 px-6">
           <!-- Mobile product info -->
           <div class="md:hidden mb-10 text-ink text-center">
-            <p class="text-[10px] uppercase tracking-[0.2em] mb-2 opacity-70">LORE</p>
+            <p class="text-[10px] uppercase tracking-[0.2em] mb-2 opacity-70">LAMAR</p>
             <h1 class="font-serif text-3xl italic mb-2">{{ product.title }}</h1>
             <p class="text-xl mb-6">${{ selectedVariant.price.toFixed(2) }}</p>
 
@@ -107,7 +107,7 @@ const related = computed(() =>
 
         <!-- Right: Product info (desktop) -->
         <aside class="hidden md:flex md:flex-col md:items-center md:justify-center md:sticky md:top-0 md:h-screen px-6 py-12 text-ink">
-          <p class="text-[10px] uppercase tracking-[0.2em] mb-2 opacity-70">LORE</p>
+          <p class="text-[10px] uppercase tracking-[0.2em] mb-2 opacity-70">LAMAR</p>
           <h1 class="font-serif text-4xl italic mb-1 text-center">{{ product.title }}</h1>
           <p class="text-[10px] uppercase tracking-[0.2em] mb-8 opacity-70">{{ product.category }}</p>
           <p class="text-xl mb-8">${{ selectedVariant.price.toFixed(2) }}</p>

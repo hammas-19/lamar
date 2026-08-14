@@ -32,7 +32,7 @@ function submit() {
           Subscribe
         </button>
       </form>
-      <p v-else class="text-sm text-cream/70">Thank you for joining LORE.</p>
+      <p v-else class="text-sm text-cream/70">Thank you for joining LAMAR.</p>
     </div>
   </section>
 </template>

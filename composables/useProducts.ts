@@ -18,6 +18,7 @@ export interface Product {
   gradient?: string
   badge?: string
   notes?: string[]
+  gender?: string[]
 }
 
 const products = productsData as Product[]

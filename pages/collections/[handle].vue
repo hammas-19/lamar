@@ -2,17 +2,26 @@
 const route = useRoute()
 const products = useProducts()
 
-const collections: Record<string, { title: string; category?: 'fragrance' | 'object' | 'set' }> = {
+const collections: Record<string, { title: string; category?: 'fragrance' | 'object' | 'set'; gender?: string }> = {
   all: { title: 'Shop All' },
-  fragrances: { title: 'Fragrances', category: 'fragrance' }
+  fragrances: { title: 'Fragrances', category: 'fragrance' },
+  men: { title: 'Men', gender: 'men' },
+  women: { title: 'Women', gender: 'women' },
+  unisex: { title: 'Unisex', gender: 'unisex' }
 }
 
 const handle = computed(() => route.params.handle as string)
-const collection = computed(() => collections[handle.value] ?? { title: 'Shop' })
+const collection = computed(() => collections[handle.value] ?? { title: handle.value ? handle.value.charAt(0).toUpperCase() + handle.value.slice(1) : 'Shop' })
 
 const filtered = computed(() => {
-  if (!collection.value.category) return products
-  return products.filter((p) => p.category === collection.value.category)
+  let list = products
+  if (collection.value.category) {
+    list = list.filter((p) => p.category === collection.value.category)
+  }
+  if (collection.value.gender) {
+    list = list.filter((p) => p.gender?.includes(collection.value.gender!))
+  }
+  return list
 })
 
 const sort = ref('featured')

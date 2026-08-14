@@ -3,10 +3,10 @@ const { count } = useCart()
 const mobileOpen = ref(false)
 
 const nav = [
-  { label: 'Fragrances', to: '/collections/fragrances' },
-  { label: 'Shop All', to: '/collections/all' },
-  { label: 'About', to: '/about' },
-  { label: 'Stockists', to: '/stockist' }
+  { label: 'Men', to: '/collections/men' },
+  { label: 'Women', to: '/collections/women' },
+  { label: 'Unisex', to: '/collections/unisex' },
+  { label: 'About', to: '/about' }
 ]
 </script>
 
@@ -31,7 +31,7 @@ const nav = [
       </nav>
 
       <NuxtLink to="/" class="absolute left-1/2 -translate-x-1/2">
-        <img src="/logoBlk.png" alt="LORE" class="h-5 w-auto" />
+        <img src="/logoBlk.png" alt="LAMAR" class="h-5 w-auto" />
       </NuxtLink>
 
       <div class="flex items-center gap-5">

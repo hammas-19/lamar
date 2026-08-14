@@ -1,6 +1,6 @@
-# LORE — UI Revamp
+# LAMAR — UI Revamp
 
-A from-scratch **Nuxt 3** rebuild of the LORE fragrance storefront UI (home, collections,
+A from-scratch **Nuxt 3** rebuild of the LAMAR fragrance storefront UI (home, collections,
 product detail, cart, checkout, and supporting pages). Product copy, imagery and prices
 were extracted from the client's live site for an authentic look.
 

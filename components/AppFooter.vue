@@ -3,8 +3,9 @@ const columns = [
   {
     title: 'Shop',
     links: [
-      { label: 'Fragrances', to: '/collections/fragrances' },
-      { label: 'Sets & Objects', to: '/collections/all' },
+      { label: 'Men', to: '/collections/men' },
+      { label: 'Women', to: '/collections/women' },
+      { label: 'Unisex', to: '/collections/unisex' },
       { label: 'Build Your Bundle', to: '/products/build-your-bundle' }
     ]
   },
@@ -12,7 +13,6 @@ const columns = [
     title: 'Company',
     links: [
       { label: 'About', to: '/about' },
-      { label: 'Stockists', to: '/stockist' },
       { label: 'FAQ', to: '/faq' }
     ]
   },
@@ -33,7 +33,7 @@ const columns = [
     <div class="container-lore py-16">
       <div class="grid grid-cols-2 md:grid-cols-5 gap-10">
         <div class="col-span-2">
-          <img src="/logoBlk.png" alt="LORE" class="h-5 w-auto mb-4" />
+          <img src="/logoBlk.png" alt="LAMAR" class="h-5 w-auto mb-4" />
           <p class="text-sm text-ink/60 max-w-xs">
             Scents that take you somewhere. Complex, rich and emotional. Familiar but new.
           </p>
@@ -51,7 +51,7 @@ const columns = [
       </div>
 
       <div class="mt-16 pt-6 border-t border-line flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-        <p class="text-xs text-ink/50">&copy; {{ new Date().getFullYear() }} LORE. All rights reserved.</p>
+        <p class="text-xs text-ink/50">&copy; {{ new Date().getFullYear() }} LAMAR. All rights reserved.</p>
         <p class="text-xs text-ink/50">Made in Los Angeles.</p>
       </div>
     </div>

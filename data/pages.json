@@ -1,11 +1,11 @@
 {
   "home": {
-    "title": "LORE \u2013 Scents that take you somewhere.",
-    "description": "LORE is a world of scents that take you somewhere. Complex, rich and emotional. Familiar but new. Each scent invites new meaning through your own wear, designed inclusive of gender, identity and the things we carry. At our core is the reminder of all that connects us."
+    "title": "LAMAR \u2013 Scents that take you somewhere.",
+    "description": "LAMAR is a world of scents that take you somewhere. Complex, rich and emotional. Familiar but new. Each scent invites new meaning through your own wear, designed inclusive of gender, identity and the things we carry. At our core is the reminder of all that connects us."
   },
   "about": {
     "title": "This is Lore",
-    "description": "LORE started as an invisible connection with me and 2 close friends, Greg and Joe. It\u2019s grown into a world of scents that take you somewhere.",
+    "description": "LAMAR started as an invisible connection with me and 2 close friends, Greg and Joe. It\u2019s grown into a world of scents that take you somewhere.",
     "image": "/images/Untitled_design3d1d.png"
   },
   "faq": {
@@ -40,10 +40,6 @@
   },
   "accessibility": {
     "title": "Accessibility Statement",
-    "description": "LORE is committed to making our website accessible to everyone, including people with disabilities. We are actively working to improve the accessibility and usability of our website, and we strive to follow the Web Content Accessibility Guidelines (WCAG) 2.2 Level AA as our standard."
-  },
-  "stockist": {
-    "title": "Stockists",
-    "description": "Experience LORE instore across over one hundred retail locations and partners. Find the scents that take you somewhere."
+    "description": "LAMAR is committed to making our website accessible to everyone, including people with disabilities. We are actively working to improve the accessibility and usability of our website, and we strive to follow the Web Content Accessibility Guidelines (WCAG) 2.2 Level AA as our standard."
   }
 }

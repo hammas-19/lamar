@@ -1,38 +1,11 @@
 <script setup lang="ts">
-const route = useRoute()
-const isHome = computed(() => route.path === '/')
-const isPastHero = ref(false)
 const menuOpen = ref(false)
-let rafId: number | null = null
-
-const handleScroll = () => {
-  if (rafId) return
-  rafId = requestAnimationFrame(() => {
-    if (isHome.value) {
-      const threshold = window.innerHeight * 0.92
-      isPastHero.value = window.scrollY > threshold
-    } else {
-      isPastHero.value = true
-    }
-    rafId = null
-  })
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll, { passive: true })
-  handleScroll()
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-  if (rafId) cancelAnimationFrame(rafId)
-})
 
 const heroNav = [
-  { label: 'Fragrances', to: '/collections/fragrances' },
-  { label: 'Shop All', to: '/collections/all' },
+  { label: 'Men', to: '/collections/men' },
+  { label: 'Women', to: '/collections/women' },
+  { label: 'Unisex', to: '/collections/unisex' },
   { label: 'About', to: '/about' },
-  { label: 'Stockists', to: '/stockist' },
   { label: 'Bag', to: '/cart' }
 ]
 </script>
@@ -40,17 +13,15 @@ const heroNav = [
 <template>
   <div>
     <!-- Top-left navigation -->
-    <div class="fixed top-6 md:top-8 left-6 md:left-10 z-50">
+    <div class="fixed top-4 md:top-6 left-4 md:left-6 z-50">
       <!-- Desktop pill nav -->
-      <nav
-        class="hidden md:flex flex-wrap items-center gap-3 transition-all duration-300"
-        :class="isPastHero ? 'bg-black/80 rounded-full p-2 backdrop-blur-sm' : ''"
-      >
+      <nav class="hidden md:flex items-center gap-1.5 bg-black/80 backdrop-blur-sm rounded-full p-1 md:p-1.5 border border-cream/10">
         <NuxtLink
           v-for="item in heroNav"
           :key="item.to"
           :to="item.to"
-          class="px-3 md:px-5 py-1.5 md:py-2.5 border border-cream/40 rounded-full text-cream text-[10px] md:text-[11px] tracking-[0.12em] uppercase transition-colors duration-200 hover:bg-cream hover:text-ink"
+          class="px-2.5 md:px-3.5 py-1 md:py-1.5 border border-cream/40 rounded-full text-cream text-[10px] md:text-[11px] tracking-[0.12em] uppercase transition-colors duration-200 hover:bg-cream hover:text-ink"
+          active-class="bg-cream !text-ink"
         >
           {{ item.label }}
         </NuxtLink>
@@ -58,12 +29,11 @@ const heroNav = [
 
       <!-- Mobile hamburger -->
       <button
-        class="md:hidden p-2 -ml-2 transition-colors duration-300"
-        :class="isPastHero ? 'text-ink' : 'text-cream'"
+        class="md:hidden p-2 bg-black/80 backdrop-blur-sm rounded-full text-cream border border-cream/10 transition-colors duration-300 flex items-center justify-center"
         aria-label="Open menu"
         @click="menuOpen = true"
       >
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="12" x2="21" y2="12" />
           <line x1="3" y1="18" x2="21" y2="18" />
@@ -72,8 +42,11 @@ const heroNav = [
     </div>
 
     <!-- Logo fixed top-right -->
-    <NuxtLink to="/" class="fixed top-6 md:top-8 right-6 md:right-10 z-50 transition-all duration-300">
-      <img :src="isPastHero ? '/logoBlk.png' : '/logoWht.png'" alt="LORE" class="h-8 md:h-10 w-auto" />
+    <NuxtLink
+      to="/"
+      class="fixed top-4 md:top-6 right-4 md:right-6 z-50 bg-black/80 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full flex items-center justify-center border border-cream/10"
+    >
+      <img src="/logoWht.png" alt="LAMAR" class="h-5 md:h-6 w-auto" />
     </NuxtLink>
 
     <!-- Mobile menu overlay -->

@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'LORE — Scents that take you somewhere.',
+      title: 'LAMAR — Scents that take you somewhere.',
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/images/lore_monogram.svg' }]
     }
   }

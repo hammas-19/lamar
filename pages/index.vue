@@ -30,8 +30,8 @@ const sets = computed(() => products.filter((p) => p.category !== 'fragrance').s
 
     <!-- Intro -->
     <section class="container-lore py-24 text-center">
-      <p class="eyebrow mb-6">This is LORE</p>
-        <!-- <img src="/images/logos.jpeg" alt="LORE editorial" class="mt-8" />// -->
+      <p class="eyebrow mb-6">This is LAMAR</p>
+        <!-- <img src="/images/logos.jpeg" alt="LAMAR editorial" class="mt-8" />// -->
 
       <h2 class="font-serif text-2xl md:text-4xl max-w-3xl mx-auto leading-snug">
         Complex, rich and emotional. Familiar but new. Each scent invites new meaning
@@ -47,7 +47,7 @@ const sets = computed(() => products.filter((p) => p.category !== 'fragrance').s
       <div class="container-lore mb-8">
         <div class="flex items-end justify-between">
           <h2 class="font-serif text-2xl md:text-3xl">The Fragrances</h2>
-          <NuxtLink to="/collections/fragrances" class="text-sm underline underline-offset-4">
+          <NuxtLink to="/collections/unisex" class="text-sm underline underline-offset-4">
             View all
           </NuxtLink>
         </div>
@@ -65,7 +65,7 @@ const sets = computed(() => products.filter((p) => p.category !== 'fragrance').s
         <source media="(min-width: 768px)" srcset="/images/secImage.jpeg" />
         <img
           src="/images/secImageMob.jpeg"
-          alt="LORE editorial"
+          alt="LAMAR editorial"
           class="h-full w-full object-cover"
         />
       </picture>
@@ -77,7 +77,7 @@ const sets = computed(() => products.filter((p) => p.category !== 'fragrance').s
           Made with intention, worn with meaning.
         </h2>
         <p class="text-cream/80 mb-8 max-w-md leading-relaxed">
-          Every LORE fragrance is designed inclusive of gender, identity and the things
+          Every LAMAR fragrance is designed inclusive of gender, identity and the things
           we carry — a reminder of all that connects us.
         </p>
         <NuxtLink to="/about" class="btn-outline !border-cream !text-cream hover:!bg-cream hover:!text-ink">
@@ -85,9 +85,42 @@ const sets = computed(() => products.filter((p) => p.category !== 'fragrance').s
         </NuxtLink>
       </div>
     </section>
+    <!-- Men Section -->
+    <section class="py-24">
+      <div class="container-lore mb-8">
+        <div class="flex items-end justify-between">
+          <h2 class="font-serif text-2xl md:text-3xl">Men</h2>
+          <NuxtLink to="/collections/men" class="text-sm underline underline-offset-4">
+            View all
+          </NuxtLink>
+        </div>
+      </div>
+      <div class="px-3 md:px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          <ProductCard v-for="p in fragrances" :key="p.handle" :product="p" />
+        </div>
+      </div>
+    </section>
+<!-- Women Section -->
+  <!-- Men Section -->
+    <section class="pb-24">
+      <div class="container-lore mb-8">
+        <div class="flex items-end justify-between">
+          <h2 class="font-serif text-2xl md:text-3xl">Women</h2>
+          <NuxtLink to="/collections/women" class="text-sm underline underline-offset-4">
+            View all
+          </NuxtLink>
+        </div>
+      </div>
+      <div class="px-3 md:px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          <ProductCard v-for="p in fragrances" :key="p.handle" :product="p" />
+        </div>
+      </div>
+    </section>
 
     <!-- Sets & objects -->
-    <section class="py-24">
+    <!-- <section class="py-24">
       <div class="container-lore mb-8">
         <div class="flex items-end justify-between">
           <h2 class="font-serif text-2xl md:text-3xl">Sets &amp; Objects</h2>
@@ -101,7 +134,7 @@ const sets = computed(() => products.filter((p) => p.category !== 'fragrance').s
           <ProductCard v-for="p in sets" :key="p.handle" :product="p" />
         </div>
       </div>
-    </section>
+    </section> -->
 
     <Newsletter />
   </div>
