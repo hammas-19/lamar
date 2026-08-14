@@ -9,7 +9,9 @@ export default defineNuxtConfig({
   ],
 
   supabase: {
-    redirect: false
+    redirect: false,
+    url: process.env.SUPABASE_URL || process.env.BE_URL,
+    key: process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY || process.env.BE_KEY
   },
 
   css: ['~/assets/css/main.css'],
