@@ -10,9 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@imgly/background-removal": "^1.7.0",
     "@nuxtjs/supabase": "^1.4.0",
     "@upstash/redis": "^1.38.2",
     "nuxt": "^3.13.0",
+    "onnxruntime-web": "^1.21.0",
     "vue": "^3.4.0",
     "vue-router": "^4.4.0"
   },

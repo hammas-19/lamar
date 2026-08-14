@@ -13,6 +13,12 @@ const emit = defineEmits<{
 const { upload, remove, uploading, progress, error } = useStorageUpload('product-images')
 const isDragging = ref(false)
 const fileInputRef = ref<HTMLInputElement | null>(null)
+const selectedFile = ref<File | null>(null)
+
+// Background removal state
+const isRemovingBg = ref(false)
+const bgStatusText = ref('')
+const bgError = ref<string | null>(null)
 
 function triggerFileInput() {
   fileInputRef.value?.click()
@@ -21,6 +27,7 @@ function triggerFileInput() {
 async function handleFileSelect(event: Event) {
   const input = event.target as HTMLInputElement
   if (input.files && input.files[0]) {
+    selectedFile.value = input.files[0]
     await processAndUpload(input.files[0])
   }
 }
@@ -28,11 +35,13 @@ async function handleFileSelect(event: Event) {
 async function handleDrop(event: DragEvent) {
   isDragging.value = false
   if (event.dataTransfer?.files && event.dataTransfer.files[0]) {
+    selectedFile.value = event.dataTransfer.files[0]
     await processAndUpload(event.dataTransfer.files[0])
   }
 }
 
 async function processAndUpload(file: File) {
+  bgError.value = null
   const url = await upload(file, props.folder || 'products')
   if (url) {
     emit('update:modelValue', url)
@@ -43,7 +52,74 @@ async function handleRemove() {
   if (props.modelValue && props.modelValue.startsWith('http')) {
     await remove(props.modelValue)
   }
+  selectedFile.value = null
+  bgError.value = null
   emit('update:modelValue', null)
+}
+
+async function handleRemoveBackground() {
+  if (isRemovingBg.value || uploading.value) return
+  if (!selectedFile.value && !props.modelValue) return
+
+  bgError.value = null
+  isRemovingBg.value = true
+  bgStatusText.value = 'Preparing AI engine...'
+
+  try {
+    let imageSource: File | Blob | null = null
+
+    if (selectedFile.value) {
+      imageSource = selectedFile.value
+    } else if (props.modelValue) {
+      bgStatusText.value = 'Downloading image...'
+      const res = await fetch(props.modelValue)
+      if (!res.ok) throw new Error('Failed to fetch current image for processing')
+      imageSource = await res.blob()
+    }
+
+    if (!imageSource) {
+      throw new Error('No valid image found for background removal')
+    }
+
+    bgStatusText.value = 'Loading AI model (1st run downloads ~30MB assets)...'
+
+    // CRITICAL: Dynamic import to ensure SSR compatibility
+    const imglyRemoveBackground = (await import('@imgly/background-removal')).default
+
+    const resultBlob = await imglyRemoveBackground(imageSource, {
+      progress: (key: string, current: number, total: number) => {
+        if (total > 0) {
+          const pct = Math.round((current / total) * 100)
+          bgStatusText.value = `Downloading AI assets (${pct}%)...`
+        } else if (key.includes('fetch')) {
+          bgStatusText.value = 'Fetching model parameters...'
+        } else {
+          bgStatusText.value = 'Removing background with AI...'
+        }
+      }
+    })
+
+    bgStatusText.value = 'Uploading transparent PNG...'
+
+    const origName = selectedFile.value?.name || 'product_image.png'
+    const nameWithoutExt = origName.replace(/\.[^/.]+$/, '')
+    const transparentFile = new File([resultBlob], `${nameWithoutExt}_nobg.png`, {
+      type: 'image/png'
+    })
+
+    selectedFile.value = transparentFile
+    const url = await upload(transparentFile, props.folder || 'products')
+
+    if (url) {
+      emit('update:modelValue', url)
+    }
+  } catch (err: any) {
+    console.error('Background removal failed:', err)
+    bgError.value = err.message || 'Background removal failed'
+  } finally {
+    isRemovingBg.value = false
+    bgStatusText.value = ''
+  }
 }
 </script>
 
@@ -64,10 +140,10 @@ async function handleRemove() {
 
     <!-- Upload area / Dropzone -->
     <div
-      class="relative border-2 border-dashed rounded-xl p-4 transition-all duration-200 text-center"
+      class="relative border-2 border-dashed rounded-xl p-4 transition-all duration-200 text-center overflow-hidden"
       :class="[
         isDragging ? 'border-[#e5e7eb] bg-[#e5e7eb]/10' : 'border-[#323245] bg-[#16161e] hover:border-[#4a4a60]',
-        uploading ? 'pointer-events-none opacity-80' : 'cursor-pointer'
+        uploading || isRemovingBg ? 'pointer-events-none opacity-90' : 'cursor-pointer'
       ]"
       @dragover.prevent="isDragging = true"
       @dragleave.prevent="isDragging = false"
@@ -83,14 +159,25 @@ async function handleRemove() {
       />
 
       <!-- If image exists -->
-      <div v-if="modelValue" class="relative group aspect-square w-full max-w-[200px] mx-auto overflow-hidden rounded-lg bg-[#20202d] p-2 flex items-center justify-center">
+      <div v-if="modelValue && !isRemovingBg && !uploading" class="relative group aspect-square w-full max-w-[200px] mx-auto overflow-hidden rounded-lg p-2 flex items-center justify-center border border-[#272736]" style="background-image: repeating-conic-gradient(#222230 0% 25%, #14141c 0% 50%); background-size: 16px 16px;">
         <img :src="modelValue" :alt="label" class="w-full h-full object-contain rounded" />
         
         <!-- Overlay on hover -->
-        <div class="absolute inset-0 bg-black/75 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-2">
+        <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-2 backdrop-blur-xs">
           <button
             type="button"
-            class="px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white text-xs rounded-md shadow flex items-center gap-1 transition-colors"
+            class="w-full max-w-[140px] px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium rounded-md shadow flex items-center justify-center gap-1.5 transition-colors"
+            @click.stop="handleRemoveBackground"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L5.6 15.12a2 2 0 00-1.18.172l-.56.28a2 2 0 00-.73 2.766l.488.732a2 2 0 002.32.784l2.128-.71a6 6 0 013.86.517l.318.158a6 6 0 003.86.517l2.387-.477a2 2 0 001.022-.547l1.758-1.758a2 2 0 000-2.828l-1.758-1.758z" />
+            </svg>
+            Remove BG
+          </button>
+          
+          <button
+            type="button"
+            class="w-full max-w-[140px] px-3 py-1.5 bg-rose-600/90 hover:bg-rose-500 text-white text-xs font-medium rounded-md shadow flex items-center justify-center gap-1.5 transition-colors"
             @click.stop="handleRemove"
           >
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,12 +185,12 @@ async function handleRemove() {
             </svg>
             Remove
           </button>
-          <span class="text-[10px] text-slate-300">Click outside image to replace</span>
+          <span class="text-[10px] text-slate-300">Click box to replace</span>
         </div>
       </div>
 
       <!-- Upload prompt if no image -->
-      <div v-else-if="!uploading" class="py-6 flex flex-col items-center justify-center gap-2">
+      <div v-else-if="!uploading && !isRemovingBg" class="py-6 flex flex-col items-center justify-center gap-2">
         <div class="w-10 h-10 rounded-full bg-[#242436] flex items-center justify-center text-slate-400">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -115,8 +202,20 @@ async function handleRemove() {
         <p class="text-[10px] text-slate-400">PNG, JPG, WEBP, GIF up to 5MB</p>
       </div>
 
-      <!-- Loading State -->
-      <div v-if="uploading" class="py-6 flex flex-col items-center justify-center gap-3">
+      <!-- Background Removal Processing State -->
+      <div v-if="isRemovingBg" class="py-8 flex flex-col items-center justify-center gap-3">
+        <div class="relative w-10 h-10 flex items-center justify-center">
+          <svg class="animate-spin w-8 h-8 text-indigo-400" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+          </svg>
+        </div>
+        <span class="text-xs text-indigo-300 font-mono text-center px-2">{{ bgStatusText }}</span>
+        <span class="text-[10px] text-slate-400">Local browser AI execution</span>
+      </div>
+
+      <!-- Standard Uploading State -->
+      <div v-else-if="uploading" class="py-6 flex flex-col items-center justify-center gap-3">
         <div class="w-full max-w-[160px] bg-[#272736] rounded-full h-2 overflow-hidden">
           <div class="bg-[#e5e7eb] h-full transition-all duration-300 rounded-full" :style="{ width: `${progress}%` }" />
         </div>
@@ -124,7 +223,24 @@ async function handleRemove() {
       </div>
     </div>
 
-    <!-- Error message -->
+    <!-- Additional Action Bar if Image Loaded -->
+    <div v-if="modelValue && !isRemovingBg && !uploading" class="flex items-center justify-between px-1">
+      <button
+        type="button"
+        class="text-xs text-indigo-400 hover:text-indigo-300 font-medium flex items-center gap-1 transition-colors"
+        @click="handleRemoveBackground"
+      >
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        Auto Remove Background
+      </button>
+      <span class="text-[10px] text-slate-500">Checkerboard = transparent</span>
+    </div>
+
+    <!-- Error messages -->
     <p v-if="error" class="text-xs text-rose-400 font-mono">{{ error }}</p>
+    <p v-if="bgError" class="text-xs text-rose-400 font-mono">{{ bgError }}</p>
   </div>
 </template>
+
