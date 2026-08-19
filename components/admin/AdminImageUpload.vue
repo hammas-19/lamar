@@ -84,7 +84,14 @@ async function handleRemoveBackground() {
     bgStatusText.value = 'Loading AI model (1st run downloads ~30MB assets)...'
 
     // CRITICAL: Dynamic import to ensure SSR compatibility
-    const imglyRemoveBackground = (await import('@imgly/background-removal')).default
+    const imglyModule: any = await import('@imgly/background-removal')
+    const imglyRemoveBackground = typeof imglyModule.removeBackground === 'function'
+      ? imglyModule.removeBackground
+      : (typeof imglyModule.default === 'function' ? imglyModule.default : imglyModule.default?.default)
+
+    if (typeof imglyRemoveBackground !== 'function') {
+      throw new Error('Failed to resolve removeBackground function from @imgly/background-removal')
+    }
 
     const resultBlob = await imglyRemoveBackground(imageSource, {
       progress: (key: string, current: number, total: number) => {

@@ -62,7 +62,7 @@ export async function cacheFlush(keys?: string[]): Promise<{ flushed: string[] }
   } else {
     // Flush all known cache keys using scan pattern
     try {
-      let cursor = 0
+      let cursor: string | number = 0
       do {
         const result = await redis.scan(cursor, { match: 'products:*', count: 100 })
         cursor = result[0]
@@ -71,7 +71,7 @@ export async function cacheFlush(keys?: string[]): Promise<{ flushed: string[] }
           await redis.del(k)
           flushed.push(k)
         }
-      } while (cursor !== 0)
+      } while (String(cursor) !== '0')
 
       // Also flush pages
       cursor = 0
@@ -83,7 +83,7 @@ export async function cacheFlush(keys?: string[]): Promise<{ flushed: string[] }
           await redis.del(k)
           flushed.push(k)
         }
-      } while (cursor !== 0)
+      } while (String(cursor) !== '0')
     } catch (err) {
       console.warn('[cache] Flush scan failed:', err)
     }

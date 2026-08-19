@@ -123,8 +123,8 @@ export function useAdmin() {
       if (gErr) console.error('Error inserting genders:', gErr)
     }
 
-    // Flush product cache after creation
-    await flushProductCache()
+    // Auto-flush disabled — use manual "Flush Cache" button in admin sidebar
+    // await flushProductCache()
 
     return product
   }
@@ -199,8 +199,8 @@ export function useAdmin() {
       await supabase.from('product_genders').insert(gendersToInsert)
     }
 
-    // Flush product cache after update
-    await flushProductCache()
+    // Auto-flush disabled — use manual "Flush Cache" button in admin sidebar
+    // await flushProductCache()
 
     return true
   }
@@ -209,8 +209,8 @@ export function useAdmin() {
     const { error } = await supabase.from('products').delete().eq('id', id)
     if (error) throw error
 
-    // Flush product cache after deletion
-    await flushProductCache()
+    // Auto-flush disabled — use manual "Flush Cache" button in admin sidebar
+    // await flushProductCache()
 
     return true
   }
