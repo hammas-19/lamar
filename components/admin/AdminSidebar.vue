@@ -2,6 +2,12 @@
 const route = useRoute()
 const { flushProductCache } = useAdmin()
 
+const isOpen = defineModel<boolean>('open', { default: false })
+
+watch(route, () => {
+  isOpen.value = false
+})
+
 const navItems = [
   { label: 'Dashboard', to: '/admin', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
   { label: 'Orders', to: '/admin/orders', icon: 'M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' },
@@ -42,7 +48,21 @@ async function handleFlushCache() {
 </script>
 
 <template>
-  <aside class="w-64 bg-[#16161e] border-r border-[#272736] flex flex-col justify-between shrink-0 min-h-screen text-slate-300">
+  <!-- Mobile backdrop -->
+  <Teleport to="body">
+    <Transition name="fade">
+      <div
+        v-if="isOpen"
+        class="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm md:hidden"
+        @click="isOpen = false"
+      />
+    </Transition>
+  </Teleport>
+
+  <aside
+    class="fixed inset-y-0 left-0 z-[95] w-64 bg-[#16161e] border-r border-[#272736] flex flex-col justify-between shrink-0 min-h-screen text-slate-300 transition-transform duration-300 md:sticky md:top-0 md:translate-x-0"
+    :class="isOpen ? 'translate-x-0' : '-translate-x-full'"
+  >
     <div>
       <!-- Header / Logo -->
       <div class="px-6 py-6 border-b border-[#272736] flex items-center justify-between">
@@ -52,6 +72,11 @@ async function handleFlushCache() {
             Admin
           </span>
         </NuxtLink>
+        <button class="md:hidden p-1 text-slate-400 hover:text-white" @click="isOpen = false">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
 
       <!-- Navigation Links -->
@@ -184,3 +209,14 @@ async function handleFlushCache() {
     </Teleport>
   </aside>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

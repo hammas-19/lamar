@@ -4,7 +4,7 @@ const { lines, subtotal, updateQuantity, removeItem } = useCart()
 
 <template>
   <div class="container-lore py-16">
-    <h1 class="font-serif text-3xl md:text-4xl mb-10">Your Bag</h1>
+    <h1 class="font-serif text-3xl md:text-4xl my-10">Your Bag</h1>
 
     <div v-if="lines.length === 0" class="text-center py-24">
       <p class="text-ink/60 mb-6">Your bag is empty.</p>

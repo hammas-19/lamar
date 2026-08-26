@@ -56,13 +56,13 @@ function selectGradient(cssValue: string) {
       />
 
       <!-- Text input for raw CSS gradient -->
-      <input
+      <!-- <input
         :value="modelValue"
         type="text"
         placeholder="linear-gradient(135deg, #...)"
         class="flex-1 bg-[#16161e] border border-[#323245] rounded-lg px-3 py-2 text-xs font-mono text-slate-200 focus:outline-none focus:border-[#e5e7eb]"
         @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
-      />
+      /> -->
 
       <!-- Button to open visual picker modal -->
       <button

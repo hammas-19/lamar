@@ -25,7 +25,7 @@ const minPrice = computed(() =>
 
     <div class="absolute bottom-0 left-0 right-0 p-4 md:p-6 flex items-end justify-between">
       <div>
-        <h3 class="font-serif text-lg italic leading-tight">{{ product.title }}</h3>
+        <h3 class="font-serif md:text-lg text-[13px] italic leading-tight">{{ product.title }}</h3>
         <!-- <p class="text-[11px] uppercase tracking-[0.15em] text-ink/60 mt-1">
           {{ product.category }}
         </p> -->

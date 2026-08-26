@@ -11,6 +11,7 @@ export interface CartLine {
 
 export function useCart() {
   const lines = useState<CartLine[]>('cart-lines', () => [])
+  const drawerOpen = useState<boolean>('cart-drawer-open', () => false)
 
   const count = computed(() =>
     lines.value.reduce((sum, l) => sum + l.quantity, 0)
@@ -35,6 +36,7 @@ export function useCart() {
         quantity
       })
     }
+    drawerOpen.value = true
   }
 
   function updateQuantity(key: string, quantity: number) {
@@ -55,5 +57,5 @@ export function useCart() {
     lines.value = []
   }
 
-  return { lines, count, subtotal, addItem, updateQuantity, removeItem, clearCart }
+  return { lines, count, subtotal, drawerOpen, addItem, updateQuantity, removeItem, clearCart }
 }

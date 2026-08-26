@@ -4,7 +4,7 @@ const open = ref(false)
 </script>
 
 <template>
-  <div class="border-b" :class="variant === 'light' ? 'border-cream/20' : 'border-line'">
+  <div class="border-b" :class="variant === 'light' ? 'border-cream/20' : 'border-black/20'">
     <button
       class="flex w-full items-center justify-between py-4 text-left text-sm tracking-wide uppercase"
       :class="variant === 'light' ? 'text-cream' : 'text-ink'"

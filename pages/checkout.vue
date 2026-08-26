@@ -84,7 +84,7 @@ async function placeOrder() {
     </div>
 
     <template v-else>
-      <h1 class="font-serif text-3xl md:text-4xl mb-10">Checkout</h1>
+      <h1 class="font-serif text-3xl md:text-4xl my-10">Checkout</h1>
 
       <div class="grid md:grid-cols-3 gap-12">
         <form class="md:col-span-2 space-y-10" @submit.prevent="placeOrder">

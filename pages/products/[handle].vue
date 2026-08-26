@@ -19,11 +19,7 @@ const productImages = computed(() => {
   return [product.value.image, product.value.image2, product.value.image3].filter(Boolean) as string[]
 })
 
-const activeImageIndex = ref(0)
-const activeImage = computed(() => productImages.value[activeImageIndex.value] || product.value?.image)
-
 watch(handle, () => {
-  activeImageIndex.value = 0
   if (product.value?.variants?.[0]) {
     selectedVariant.value = product.value.variants[0]
   }
@@ -93,23 +89,14 @@ const related = computed(() =>
             </button>
           </div>
 
-          <!-- Product image gallery (up to 3 images) -->
-          <div class="flex flex-col items-center">
-            <div class="aspect-square w-full max-w-md flex items-center justify-center">
-              <img :src="activeImage" :alt="product.title" class="h-full w-full object-contain drop-shadow-2xl transition-all duration-300" />
-            </div>
-
-            <!-- Thumbnail gallery switcher if multiple images -->
-            <div v-if="productImages.length > 1" class="flex gap-3 mt-6 justify-center">
-              <button
-                v-for="(img, idx) in productImages"
-                :key="idx"
-                class="w-16 h-16 rounded-lg overflow-hidden border-2 transition-all p-1 bg-black/5"
-                :class="activeImageIndex === idx ? 'border-ink scale-105' : 'border-transparent opacity-60 hover:opacity-100'"
-                @click="activeImageIndex = idx"
-              >
-                <img :src="img" :alt="`${product.title} view ${idx + 1}`" class="w-full h-full object-contain" />
-              </button>
+          <!-- Product images (vertical stack) -->
+          <div class="flex flex-col items-center gap-8">
+            <div
+              v-for="(img, idx) in productImages"
+              :key="idx"
+              class="aspect-square w-full max-w-md flex items-center justify-center"
+            >
+              <img :src="img" :alt="`${product.title} view ${idx + 1}`" class="h-full w-full object-contain drop-shadow-2xl" />
             </div>
           </div>
 
