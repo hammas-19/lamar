@@ -107,7 +107,7 @@ const related = computed(() =>
           </div>
 
           <!-- Accordions -->
-          <div class="mt-12 max-w-lg mx-auto">
+          <div class="mt-12 max-w-lg mx-auto md:min-h-[330px]">
             <Accordion title="Ingredients">
               <p>A full ingredients list is available on the product packaging.</p>
             </Accordion>
