@@ -19,7 +19,14 @@ const minPrice = computed(() =>
       <img
         :src="product.image"
         :alt="product.title"
-        class="absolute inset-0 h-full w-full object-contain p-6 md:p-10 transition-transform duration-500 group-hover:scale-[1.02]"
+        class="absolute inset-0 h-full w-full object-contain p-6 md:p-10 transition-all duration-500"
+        :class="product.image2 ? 'group-hover:opacity-0 group-hover:scale-[1.02]' : 'group-hover:scale-[1.02]'"
+      />
+      <img
+        v-if="product.image2"
+        :src="product.image2"
+        :alt="`${product.title} alternate`"
+        class="absolute inset-0 h-full w-full object-contain p-6 md:p-10 opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.02]"
       />
     </div>
 
