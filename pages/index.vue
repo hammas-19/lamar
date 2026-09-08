@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const products = useProducts()
-const fragrances = computed(() => products.filter((p) => p.category === 'fragrance').slice(0, 4))
-const sets = computed(() => products.filter((p) => p.category !== 'fragrance').slice(0, 3))
+const fragrances = computed(() => products.value.filter((p) => p.category === 'fragrance').slice(0, 4))
+const sets = computed(() => products.value.filter((p) => p.category !== 'fragrance').slice(0, 3))
 
 </script>
 

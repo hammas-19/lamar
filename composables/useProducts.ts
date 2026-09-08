@@ -44,29 +44,31 @@ export async function fetchProductsFromAPI(): Promise<Product[] | null> {
   }
 }
 
-export function useProducts(): Product[] {
+export function useProducts(): Ref<Product[]> {
   const productsState = useState<Product[]>('all-products', () => fallbackProducts)
 
-  // Asynchronously hydrate from cached API
-  if (process.client) {
-    onMounted(async () => {
-      const fetched = await fetchProductsFromAPI()
-      if (fetched) {
-        productsState.value = fetched
-      }
-    })
-  }
+  // Fetch from API on both SSR and client with proper Nuxt hydration
+  useAsyncData('products-hydrate', async () => {
+    const fetched = await fetchProductsFromAPI()
+    if (fetched) {
+      productsState.value = fetched
+    }
+    return productsState.value
+  })
 
-  return productsState.value
+  return productsState
 }
 
-export function useProduct(handle: string): Product | undefined {
+export function useProduct(handle: string | Ref<string> | ComputedRef<string>): ComputedRef<Product | undefined> {
   const products = useProducts()
-  return products.find((p) => p.handle === handle)
+  const h = isRef(handle) ? handle : ref(handle)
+  return computed(() => products.value.find((p) => p.handle === h.value))
 }
 
-export function useProductsByCategory(category?: Product['category']): Product[] {
+export function useProductsByCategory(category?: Product['category']): ComputedRef<Product[]> {
   const products = useProducts()
-  if (!category) return products
-  return products.filter((p) => p.category === category)
+  return computed(() => {
+    if (!category) return products.value
+    return products.value.filter((p) => p.category === category)
+  })
 }

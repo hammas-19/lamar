@@ -14,7 +14,7 @@ const handle = computed(() => route.params.handle as string)
 const collection = computed(() => collections[handle.value] ?? { title: handle.value ? handle.value.charAt(0).toUpperCase() + handle.value.slice(1) : 'Shop' })
 
 const filtered = computed(() => {
-  let list = products
+  let list = products.value
   if (collection.value.category) {
     list = list.filter((p) => p.category === collection.value.category)
   }

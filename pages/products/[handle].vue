@@ -1,12 +1,21 @@
 <script setup lang="ts">
+import type { Product } from '~/composables/useProducts'
+
 const route = useRoute()
 const handle = computed(() => route.params.handle as string)
-const product = computed(() => useProduct(handle.value))
-const products = useProducts()
+
+// Fetch this specific product — awaited so SSR has data and 404 works correctly
+const { data: product } = await useAsyncData<Product>(
+  `product-${handle.value}`,
+  () => $fetch<Product>(`/api/products/${handle.value}`),
+  { watch: [handle] }
+)
 
 if (!product.value) {
   throw createError({ statusCode: 404, statusMessage: 'Product not found' })
 }
+
+const products = useProducts()
 
 const selectedVariant = ref(product.value.variants[0])
 const quantity = ref(1)
@@ -33,7 +42,7 @@ function handleAddToCart() {
 }
 
 const related = computed(() =>
-  products.filter((p) => p.category === product.value?.category && p.handle !== handle.value).slice(0, 4)
+  products.value.filter((p) => p.category === product.value?.category && p.handle !== handle.value).slice(0, 4)
 )
 </script>
 
@@ -96,7 +105,7 @@ const related = computed(() =>
               :key="idx"
               class="aspect-square w-full max-w-md flex items-center justify-center"
             >
-              <img :src="img" :alt="`${product.title} view ${idx + 1}`" class="h-full w-full object-contain drop-shadow-2xl" />
+              <img :src="img" :alt="`${product.title} view ${idx + 1}`" class="h-full w-full object-contain" />
             </div>
           </div>
 
