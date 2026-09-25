@@ -2,7 +2,8 @@
 import AdminImageUpload from '~/components/admin/AdminImageUpload.vue'
 
 definePageMeta({
-  layout: 'admin'
+  layout: 'admin',
+  middleware: ['admin-auth']
 })
 
 const route = useRoute()

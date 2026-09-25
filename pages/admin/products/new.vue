@@ -2,7 +2,8 @@
 import AdminProductForm from '~/components/admin/AdminProductForm.vue'
 
 definePageMeta({
-  layout: 'admin'
+  layout: 'admin',
+  middleware: ['admin-auth']
 })
 
 const router = useRouter()

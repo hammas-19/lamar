@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const { flushProductCache } = useAdmin()
-
+const { logout } = useAdminAuth()
 const isOpen = defineModel<boolean>('open', { default: false })
 
 watch(route, () => {
@@ -112,6 +112,18 @@ async function handleFlushCache() {
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
         </svg>
         <span>Flush Cache</span>
+      </button>
+
+      <!-- Sign Out -->
+      <button
+        type="button"
+        class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-rose-500/20 text-xs uppercase tracking-wider text-rose-400/70 hover:text-rose-300 hover:bg-rose-500/10 transition-colors"
+        @click="logout"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+        <span>Sign Out</span>
       </button>
 
       <!-- Back to Store -->
